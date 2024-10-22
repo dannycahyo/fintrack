@@ -1,45 +1,57 @@
 import { Hono } from "hono";
-import { transactions } from "../mock/transaction";
+import prisma from "../db";
 import type { Transaction } from "../types/Transaction";
 
 const transactionsRouter = new Hono();
 
-transactionsRouter.get("/", (c) => {
-  return c.json(transactions);
+transactionsRouter.get("/", async (c) => {
+  const transactions = await prisma.transaction.findMany();
+  return c.json({ data: transactions });
 });
 
-transactionsRouter.get("/:id", (c) => {
-  const transaction = transactions.find(
-    (t) => t.id === c.req.param("id"),
-  );
-  return transaction ? c.json(transaction) : c.notFound();
+transactionsRouter.get("/:id", async (c) => {
+  const transaction = await prisma.transaction.findUnique({
+    where: { id: c.req.param("id") },
+  });
+  return transaction ? c.json({ data: transaction }) : c.notFound();
 });
 
 transactionsRouter.post("/", async (c) => {
   const newTransaction: Transaction = await c.req.json();
-  newTransaction.id = "8f596aca-5c2d-4598-ba75-75d759afbdba";
-  transactions.push(newTransaction);
-  return c.json(newTransaction, 201);
+  const createdTransaction = await prisma.transaction.create({
+    data: {
+      ...newTransaction,
+      category: { connect: { id: newTransaction.category } },
+    },
+  });
+  return c.json({ data: createdTransaction }, 201);
 });
 
 transactionsRouter.patch("/:id", async (c) => {
   const id = c.req.param("id");
   const updatedTransaction: Partial<Transaction> = await c.req.json();
-  const updatedTransactions = transactions.map((t) =>
-    t.id === id ? { ...t, ...updatedTransaction } : t,
-  );
-  const transaction = updatedTransactions.find((t) => t.id === id);
-  return transaction ? c.json(transaction) : c.notFound();
+  const transaction = await prisma.transaction.update({
+    where: { id },
+    data: {
+      ...updatedTransaction,
+      category: updatedTransaction.category
+        ? { connect: { id: updatedTransaction.category } }
+        : undefined,
+    },
+  });
+  return transaction ? c.json({ data: transaction }) : c.notFound();
 });
 
-transactionsRouter.delete("/:id", (c) => {
+transactionsRouter.delete("/:id", async (c) => {
   const id = c.req.param("id");
-  const index = transactions.findIndex((t) => t.id === id);
-  if (index !== -1) {
-    transactions.splice(index, 1);
+  try {
+    await prisma.transaction.delete({
+      where: { id },
+    });
     return c.text("Transaction deleted", 204);
+  } catch (error) {
+    return c.notFound();
   }
-  return c.notFound();
 });
 
 export default transactionsRouter;
