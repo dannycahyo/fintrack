@@ -1,15 +1,15 @@
-FROM oven/bun:alpine AS build
+FROM oven/bun
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
 RUN bun install
 
-FROM oven/bun:alpine
+COPY prisma ./prisma/
 
-WORKDIR /usr/src/app
+COPY . .
 
-COPY --from=build /usr/src/app .
+RUN bunx prisma generate
 
-CMD ["bun", "start"]
+CMD ["bun", "start:migrate:production"]
