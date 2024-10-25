@@ -37,6 +37,14 @@ To start the development server, run:
 bun run dev
 ```
 
+### Running the Tests
+
+To run the tests, run:
+
+```sh
+bun test
+```
+
 Open your browser and navigate to `http://localhost:3000`.
 
 ## REST API Specification
