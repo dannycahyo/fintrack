@@ -12,4 +12,4 @@ COPY . .
 
 RUN bunx prisma generate
 
-CMD ["bun", "start:migrate:production"]
+CMD ["bun", "start:migrate:production"] 
