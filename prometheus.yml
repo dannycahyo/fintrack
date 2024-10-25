@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "fintrack"
+    static_configs:
+      - targets: ["core:3000"]

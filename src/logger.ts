@@ -1,4 +1,12 @@
 import { createLogger, format, transports } from "winston";
+import { ElasticsearchTransport } from "winston-elasticsearch";
+
+const esTransportOpts = {
+  level: "info",
+  clientOpts: {
+    node: process.env.ELASTICSEARCH_HOST || "http://localhost:9200",
+  },
+};
 
 const logger = createLogger({
   level: "info",
@@ -11,6 +19,7 @@ const logger = createLogger({
   transports: [
     new transports.Console(),
     new transports.File({ filename: "logs/app.log" }),
+    new ElasticsearchTransport(esTransportOpts),
   ],
 });
 
