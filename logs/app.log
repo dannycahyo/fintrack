@@ -1,0 +1,41 @@
+2024-10-25 18:33:22 [info]: GET /
+2024-10-25 18:33:22 [info]: GET http://localhost:3000/ - 4ms
+2024-10-25 11:34:01 [info]: GET http://localhost/categories - 1ms
+2024-10-25 11:34:01 [info]: GET http://localhost/categories - 0ms
+2024-10-25 11:34:01 [info]: POST http://localhost/categories - 1ms
+2024-10-25 11:34:01 [error]: POST /categories - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-25 11:34:01 [info]: POST http://localhost/categories - 1ms
+2024-10-25 11:34:01 [info]: GET http://localhost/categories/1 - 0ms
+2024-10-25 11:34:01 [info]: GET http://localhost/categories/999 - 1ms
+2024-10-25 11:34:01 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-25 11:34:01 [error]: PATCH /categories/1 - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-25 11:34:01 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-25 11:34:01 [info]: PATCH http://localhost/categories/999 - 0ms
+2024-10-25 11:34:01 [error]: PATCH /categories/1 - 
+2024-10-25 11:34:01 [info]: PATCH http://localhost/categories/1 - 1ms
+2024-10-25 11:34:01 [info]: DELETE http://localhost/categories/1 - 0ms
+2024-10-25 11:34:01 [info]: DELETE http://localhost/categories/999 - 0ms
