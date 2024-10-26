@@ -39,3 +39,158 @@
 2024-10-25 11:34:01 [info]: PATCH http://localhost/categories/1 - 1ms
 2024-10-25 11:34:01 [info]: DELETE http://localhost/categories/1 - 0ms
 2024-10-25 11:34:01 [info]: DELETE http://localhost/categories/999 - 0ms
+2024-10-26 09:19:40 [info]: GET /
+2024-10-26 09:19:40 [info]: GET http://localhost:3003/ - 12ms
+2024-10-26 09:19:40 [info]: GET http://localhost:3003/favicon.ico - 1ms
+2024-10-26 09:21:38 [info]: GET /
+2024-10-26 09:21:38 [info]: GET http://localhost:3003/ - 2ms
+2024-10-26 09:21:53 [info]: GET http://localhost:3003/categories - 82ms
+2024-10-26 09:22:47 [info]: GET http://localhost:3003/categories - 5ms
+2024-10-26 09:22:56 [info]: GET http://localhost:3003/categories - 46ms
+2024-10-26 09:26:08 [error]: POST /categories - Failed to parse JSON
+2024-10-26 09:26:08 [info]: POST http://localhost:3003/categories - 4ms
+2024-10-26 09:26:54 [info]: POST http://localhost:3003/categories/upload - 43ms
+2024-10-26 09:27:15 [info]: GET http://localhost:3003/categories - 1ms
+2024-10-26 11:01:14 [error]: POST /categories/upload - 
+Invalid `prisma.category.createMany()` invocation:
+
+
+Can't reach database server at `database1:5432`
+
+Please make sure your database server is running at `database1:5432`.
+2024-10-26 11:01:14 [info]: POST http://localhost:3003/categories/upload - 5030ms
+2024-10-26 11:01:50 [info]: POST http://localhost:3003/categories/upload - 51ms
+2024-10-26 11:01:58 [info]: GET http://localhost:3003/categories - 10ms
+2024-10-26 11:09:10 [info]: POST http://localhost:3003/categories - 16ms
+2024-10-26 11:09:17 [info]: GET http://localhost:3003/categories - 3ms
+2024-10-26 11:09:30 [error]: POST /categories - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 11:09:30 [info]: POST http://localhost:3003/categories - 1ms
+2024-10-26 04:14:13 [info]: GET http://localhost/categories - 0ms
+2024-10-26 04:14:13 [info]: GET http://localhost/categories - 0ms
+2024-10-26 04:14:13 [info]: POST http://localhost/categories - 1ms
+2024-10-26 04:14:13 [error]: POST /categories - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:14:13 [info]: POST http://localhost/categories - 2ms
+2024-10-26 04:14:13 [info]: GET http://localhost/categories/1 - 0ms
+2024-10-26 04:14:13 [info]: GET http://localhost/categories/999 - 1ms
+2024-10-26 04:14:13 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:14:13 [error]: PATCH /categories/1 - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:14:13 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:14:13 [info]: PATCH http://localhost/categories/999 - 0ms
+2024-10-26 04:14:13 [error]: PATCH /categories/1 - 
+2024-10-26 04:14:13 [info]: PATCH http://localhost/categories/1 - 1ms
+2024-10-26 04:14:13 [info]: DELETE http://localhost/categories/1 - 0ms
+2024-10-26 04:14:13 [info]: DELETE http://localhost/categories/999 - 0ms
+2024-10-26 04:16:12 [info]: GET http://localhost/categories - 1ms
+2024-10-26 04:16:12 [info]: GET http://localhost/categories - 0ms
+2024-10-26 04:16:12 [info]: POST http://localhost/categories - 1ms
+2024-10-26 04:16:12 [error]: POST /categories - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:16:12 [info]: POST http://localhost/categories - 0ms
+2024-10-26 04:16:12 [info]: GET http://localhost/categories/1 - 1ms
+2024-10-26 04:16:12 [info]: GET http://localhost/categories/999 - 0ms
+2024-10-26 04:16:12 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:16:12 [error]: PATCH /categories/1 - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:16:12 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:16:12 [info]: PATCH http://localhost/categories/999 - 0ms
+2024-10-26 04:16:12 [error]: PATCH /categories/1 - 
+2024-10-26 04:16:12 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:16:12 [info]: DELETE http://localhost/categories/1 - 0ms
+2024-10-26 04:16:12 [info]: DELETE http://localhost/categories/999 - 0ms
+2024-10-26 04:48:10 [info]: GET http://localhost/categories - 1ms
+2024-10-26 04:48:10 [info]: GET http://localhost/categories - 0ms
+2024-10-26 04:48:10 [info]: POST http://localhost/categories - 0ms
+2024-10-26 04:48:10 [error]: POST /categories - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:48:10 [info]: POST http://localhost/categories - 1ms
+2024-10-26 04:48:10 [info]: GET http://localhost/categories/1 - 0ms
+2024-10-26 04:48:10 [info]: GET http://localhost/categories/999 - 1ms
+2024-10-26 04:48:10 [info]: PATCH http://localhost/categories/1 - 1ms
+2024-10-26 04:48:10 [error]: PATCH /categories/1 - [
+  {
+    "code": "too_small",
+    "minimum": 3,
+    "type": "string",
+    "inclusive": true,
+    "exact": false,
+    "message": "String must contain at least 3 character(s)",
+    "path": [
+      "name"
+    ]
+  }
+]
+2024-10-26 04:48:10 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:48:10 [info]: PATCH http://localhost/categories/999 - 0ms
+2024-10-26 04:48:10 [error]: PATCH /categories/1 - 
+2024-10-26 04:48:10 [info]: PATCH http://localhost/categories/1 - 0ms
+2024-10-26 04:48:10 [info]: DELETE http://localhost/categories/1 - 0ms
+2024-10-26 04:48:10 [info]: DELETE http://localhost/categories/999 - 0ms
