@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import * as categoryRepo from "../repository/categoryRepo";
 import { CategorySchema } from "../types/Category";
 import logger from "../logger";
+import { parse } from "csv-parse";
 
 import type { Category } from "../types/Category";
 
@@ -89,6 +90,56 @@ categoriesRouter.delete("/:id", async (c) => {
       `DELETE /categories/${c.req.param("id")} - Unknown error`,
     );
     return c.json({ error: "Unknown error" }, 400);
+  }
+});
+
+categoriesRouter.post("/upload", async (c) => {
+  const formData = await c.req.formData();
+  const file = formData.get("file");
+
+  if (!file || !(file instanceof File)) {
+    return c.json({ error: "File is required" }, 400);
+  }
+
+  const categories: Category[] = [];
+  const parser = parse({ columns: true });
+
+  const readableStream = file.stream();
+  const reader = readableStream.getReader();
+  const stream = new ReadableStream({
+    async start(controller) {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        controller.enqueue(value);
+      }
+      controller.close();
+    },
+  });
+  const nodeStream = require("stream").Readable.from(stream);
+  nodeStream.pipe(parser);
+
+  for await (const record of parser) {
+    const newCategory: Category = {
+      id: undefined,
+      name: record.name,
+    };
+    categories.push(newCategory);
+  }
+
+  try {
+    await categoryRepo.bulkCreateCategories(categories);
+    return c.json(
+      { message: "Categories uploaded successfully" },
+      201,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      logger.error(`POST /categories/upload - ${error.message}`);
+      return c.json({ error: error.message }, 500);
+    }
+    logger.error(`POST /categories/upload - Unknown error`);
+    return c.json({ error: "Unknown error" }, 500);
   }
 });
 

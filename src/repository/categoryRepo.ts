@@ -42,3 +42,11 @@ export const deleteCategory = async (
     return null;
   }
 };
+
+export const bulkCreateCategories = async (
+  categories: Category[],
+): Promise<void> => {
+  await prisma.category.createMany({
+    data: categories,
+  });
+};
